@@ -16,13 +16,13 @@ class ProductoController extends Controller
         return response()->json(Producto::all(), 200);
     }
 
-    /**
+     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         //validar datos
-        $datos = $request->vaidate([
+        $datos = $request->validate([
             'nombre' => ['required', 'string', 'max:100'],
             'descripcion' => ['nullable', 'string', 'max:255'],
             'precio' => ['required', 'integer', 'min:1000'],
@@ -44,7 +44,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        return response()->json($producto, 200); //Mostrar un producto
+        return response()->json($producto, 200); // Mostrar un producto
     }
 
     /**
@@ -52,8 +52,8 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //validar datos
-        $datos = $request->vaidate([
+         //validar datos
+         $datos = $request->validate([
             'nombre' => ['required', 'string', 'max:100'],
             'descripcion' => ['nullable', 'string', 'max:255'],
             'precio' => ['required', 'integer', 'min:1000'],
@@ -77,7 +77,7 @@ class ProductoController extends Controller
     {
         //eliminar producto
         $producto->delete();
-
+        
         //Respuesta al cliente
         return response()->json([
             'success' => true,
